@@ -65,17 +65,27 @@ function Signup({ onSignup, onSwitchToLogin }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-3 overflow-y-auto">
-      <div className="bg-white rounded-xl shadow-lg p-6 max-w-lg w-full border border-gray-200 my-4">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-3 overflow-y-auto relative">
+      {/* Floating Background Animations */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[5%] right-[8%] w-28 h-28 bg-green-400 rounded-full opacity-10 animate-float-slow"></div>
+        <div className="absolute top-[60%] left-[5%] w-24 h-24 bg-emerald-400 rounded-full opacity-10 animate-float-medium"></div>
+        <div className="absolute bottom-[10%] right-[15%] w-20 h-20 bg-teal-400 rounded-full opacity-10 animate-bounce-fast"></div>
+        <div className="absolute top-[30%] left-[10%] text-6xl opacity-5 animate-float-medium">🚀</div>
+        <div className="absolute bottom-[35%] right-[25%] text-5xl opacity-5 animate-float-slow">✨</div>
+        <div className="absolute top-[50%] right-[5%] text-4xl opacity-5 animate-bounce-medium">🎯</div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-lg p-6 max-w-lg w-full border border-gray-200 my-4 animate-slideUp relative z-10">
         {/* Icon */}
         <div className="flex justify-center mb-3">
-          <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center border border-gray-300 shadow-md">
+          <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center border border-gray-300 shadow-md animate-scaleIn">
             <span className="text-3xl">✨</span>
           </div>
         </div>
 
         {/* Header */}
-        <div className="text-center mb-5">
+        <div className="text-center mb-5 animate-fadeIn">
           <h1 className="text-2xl font-bold text-gray-900 mb-1">
             Create Account
           </h1>

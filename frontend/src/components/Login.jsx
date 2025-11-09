@@ -53,17 +53,26 @@ function Login({ onLogin, onSwitchToSignup }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6">
-      <div className="bg-white rounded-xl shadow-lg p-10 max-w-lg w-full border border-gray-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6 relative overflow-hidden">
+      {/* Floating Background Animations */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-[10%] left-[5%] w-24 h-24 bg-blue-400 rounded-full opacity-10 animate-float-slow"></div>
+        <div className="absolute top-[70%] right-[10%] w-32 h-32 bg-indigo-400 rounded-full opacity-10 animate-float-medium"></div>
+        <div className="absolute bottom-[20%] left-[15%] w-20 h-20 bg-purple-400 rounded-full opacity-10 animate-bounce-slow"></div>
+        <div className="absolute top-[40%] right-[20%] text-6xl opacity-5 animate-float-fast">🔐</div>
+        <div className="absolute bottom-[40%] left-[25%] text-5xl opacity-5 animate-float-medium">✨</div>
+      </div>
+
+      <div className="bg-white rounded-xl shadow-lg p-10 max-w-lg w-full border border-gray-200 animate-slideUp relative z-10">
         {/* Icon */}
         <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center border border-gray-300 shadow-md">
+          <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center border border-gray-300 shadow-md animate-scaleIn">
             <span className="text-4xl">👤</span>
           </div>
         </div>
 
         {/* Header */}
-        <div className="text-center mb-8">
+        <div className="text-center mb-8 animate-fadeIn">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">
             Welcome Back
           </h1>

@@ -93,30 +93,30 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
 
   return (
     <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-6">
-      <div className="bg-white rounded-xl shadow-2xl p-8 max-w-lg w-full border border-gray-200">
+      <div className="bg-white dark:bg-slate-800 neon-theme:bg-[#1a2f1d] rounded-xl shadow-2xl p-8 max-w-lg w-full border border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14]">
         {/* Header */}
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-2xl font-bold text-gray-900">⚙️ Settings</h2>
+          <h2 className="text-2xl font-bold text-gray-900 dark:text-white neon-theme:text-[#39ff14]">⚙️ Settings</h2>
           <button
             onClick={onClose}
-            className="text-gray-500 hover:text-gray-700 text-2xl"
+            className="text-gray-500 dark:text-gray-400 neon-theme:text-[#8ffa70] hover:text-gray-700 dark:hover:text-gray-200 neon-theme:hover:text-[#39ff14] text-2xl"
           >
             ✕
           </button>
         </div>
 
         {/* User Info */}
-        <div className="bg-blue-50 border border-blue-200 rounded-lg p-4 mb-6">
-          <p className="text-sm text-gray-600">Logged in as:</p>
-          <p className="text-lg font-semibold text-gray-900">{user.name}</p>
-          <p className="text-sm text-gray-600">{user.email}</p>
+        <div className="bg-blue-50 dark:bg-slate-700 neon-theme:bg-[#142018] border border-blue-200 dark:border-slate-600 neon-theme:border-[#39ff14] rounded-lg p-4 mb-6">
+          <p className="text-sm text-gray-600 dark:text-gray-300 neon-theme:text-[#8ffa70]">Logged in as:</p>
+          <p className="text-lg font-semibold text-gray-900 dark:text-white neon-theme:text-[#39ff14]">{user.name}</p>
+          <p className="text-sm text-gray-600 dark:text-gray-300 neon-theme:text-[#8ffa70]">{user.email}</p>
         </div>
 
         {/* API Key Form */}
         <form onSubmit={handleSaveApiKeys} className="space-y-4 max-h-96 overflow-y-auto">
           {/* Gemini API Key */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 neon-theme:text-[#8ffa70] mb-2 flex items-center gap-2">
               <span>✨</span> Gemini API Key
             </label>
             <div className="relative">
@@ -129,24 +129,24 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
                   setSuccess('')
                 }}
                 placeholder="AIzaSy..."
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-purple-500 focus:bg-white transition pr-12"
+                className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-700 neon-theme:bg-[#0a150c] border-2 border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14] text-gray-800 dark:text-white neon-theme:text-[#39ff14] rounded-xl focus:outline-none focus:border-purple-500 dark:focus:border-purple-400 neon-theme:focus:border-[#39ff14] focus:bg-white dark:focus:bg-slate-600 transition pr-12"
               />
               <button
                 type="button"
                 onClick={() => setShowGemini(!showGemini)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 neon-theme:text-[#8ffa70] hover:text-gray-600 dark:hover:text-gray-300 neon-theme:hover:text-[#39ff14]"
               >
                 {showGemini ? '🙈' : '👁️'}
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Get from: <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-purple-600 hover:underline font-semibold">Google AI Studio</a>
+            <p className="text-xs text-gray-500 dark:text-gray-400 neon-theme:text-[#8ffa70] mt-1">
+              Get from: <a href="https://makersuite.google.com/app/apikey" target="_blank" rel="noopener noreferrer" className="text-purple-600 dark:text-purple-400 neon-theme:text-[#39ff14] hover:underline font-semibold">Google AI Studio</a>
             </p>
           </div>
 
           {/* ChatGPT API Key */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 neon-theme:text-[#8ffa70] mb-2 flex items-center gap-2">
               <span>💬</span> ChatGPT (OpenAI) API Key
             </label>
             <div className="relative">
@@ -159,24 +159,24 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
                   setSuccess('')
                 }}
                 placeholder="sk-..."
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-green-500 focus:bg-white transition pr-12"
+                className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-700 neon-theme:bg-[#0a150c] border-2 border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14] text-gray-800 dark:text-white neon-theme:text-[#39ff14] rounded-xl focus:outline-none focus:border-green-500 dark:focus:border-green-400 neon-theme:focus:border-[#39ff14] focus:bg-white dark:focus:bg-slate-600 transition pr-12"
               />
               <button
                 type="button"
                 onClick={() => setShowOpenai(!showOpenai)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 neon-theme:text-[#8ffa70] hover:text-gray-600 dark:hover:text-gray-300 neon-theme:hover:text-[#39ff14]"
               >
                 {showOpenai ? '🙈' : '👁️'}
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Get from: <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline font-semibold">OpenAI Platform</a>
+            <p className="text-xs text-gray-500 dark:text-gray-400 neon-theme:text-[#8ffa70] mt-1">
+              Get from: <a href="https://platform.openai.com/api-keys" target="_blank" rel="noopener noreferrer" className="text-green-600 dark:text-green-400 neon-theme:text-[#39ff14] hover:underline font-semibold">OpenAI Platform</a>
             </p>
           </div>
 
           {/* Perplexity API Key */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 neon-theme:text-[#8ffa70] mb-2 flex items-center gap-2">
               <span>🔍</span> Perplexity API Key
             </label>
             <div className="relative">
@@ -189,24 +189,24 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
                   setSuccess('')
                 }}
                 placeholder="pplx-..."
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition pr-12"
+                className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-700 neon-theme:bg-[#0a150c] border-2 border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14] text-gray-800 dark:text-white neon-theme:text-[#39ff14] rounded-xl focus:outline-none focus:border-blue-500 dark:focus:border-blue-400 neon-theme:focus:border-[#39ff14] focus:bg-white dark:focus:bg-slate-600 transition pr-12"
               />
               <button
                 type="button"
                 onClick={() => setShowPerplexity(!showPerplexity)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 neon-theme:text-[#8ffa70] hover:text-gray-600 dark:hover:text-gray-300 neon-theme:hover:text-[#39ff14]"
               >
                 {showPerplexity ? '🙈' : '👁️'}
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Get from: <a href="https://www.perplexity.ai/settings/api" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline font-semibold">Perplexity Settings</a>
+            <p className="text-xs text-gray-500 dark:text-gray-400 neon-theme:text-[#8ffa70] mt-1">
+              Get from: <a href="https://www.perplexity.ai/settings/api" target="_blank" rel="noopener noreferrer" className="text-blue-600 dark:text-blue-400 neon-theme:text-[#39ff14] hover:underline font-semibold">Perplexity Settings</a>
             </p>
           </div>
 
           {/* Claude API Key */}
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2 flex items-center gap-2">
+            <label className="block text-sm font-semibold text-gray-700 dark:text-gray-300 neon-theme:text-[#8ffa70] mb-2 flex items-center gap-2">
               <span>🧠</span> Claude (Anthropic) API Key
             </label>
             <div className="relative">
@@ -219,18 +219,18 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
                   setSuccess('')
                 }}
                 placeholder="sk-ant-..."
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-orange-500 focus:bg-white transition pr-12"
+                className="w-full px-4 py-3 bg-gray-50 dark:bg-slate-700 neon-theme:bg-[#0a150c] border-2 border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14] text-gray-800 dark:text-white neon-theme:text-[#39ff14] rounded-xl focus:outline-none focus:border-orange-500 dark:focus:border-orange-400 neon-theme:focus:border-[#39ff14] focus:bg-white dark:focus:bg-slate-600 transition pr-12"
               />
               <button
                 type="button"
                 onClick={() => setShowClaude(!showClaude)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-500 neon-theme:text-[#8ffa70] hover:text-gray-600 dark:hover:text-gray-300 neon-theme:hover:text-[#39ff14]"
               >
                 {showClaude ? '🙈' : '👁️'}
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">
-              Get from: <a href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer" className="text-orange-600 hover:underline font-semibold">Anthropic Console</a>
+            <p className="text-xs text-gray-500 dark:text-gray-400 neon-theme:text-[#8ffa70] mt-1">
+              Get from: <a href="https://console.anthropic.com/" target="_blank" rel="noopener noreferrer" className="text-orange-600 dark:text-orange-400 neon-theme:text-[#39ff14] hover:underline font-semibold">Anthropic Console</a>
             </p>
           </div>
 
@@ -253,7 +253,7 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
             <button
               type="button"
               onClick={onClose}
-              className="flex-1 px-4 py-2 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-lg transition font-medium"
+              className="flex-1 px-4 py-2 bg-gray-100 dark:bg-slate-700 neon-theme:bg-[#142018] hover:bg-gray-200 dark:hover:bg-slate-600 neon-theme:hover:bg-[#1a2f1d] text-gray-700 dark:text-gray-200 neon-theme:text-[#8ffa70] rounded-lg transition font-medium"
             >
               Cancel
             </button>
