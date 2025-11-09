@@ -111,7 +111,7 @@ function Hero({ onGetStarted, user, authToken, onLogout }) {
               <div className="inline-block px-4 py-1.5 bg-purple-100 dark:bg-purple-900 neon-theme:bg-[#142a18] border-2 border-purple-400 dark:border-purple-600 neon-theme:border-[#39ff14] text-purple-800 dark:text-purple-200 neon-theme:text-[#39ff14] rounded-full text-sm font-semibold">
                 ⚡ Powered by Multiple Agents 
               </div>
-              <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white neon-theme:text-[#39ff14]">
+              <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white neon-theme:text-[#39ff14] min-h-[4.5rem] md:min-h-[5rem]">
                 <span className="inline-block">
                   {typedText}
                   <span className="animate-blink border-r-4 border-purple-600 dark:border-purple-400 neon-theme:border-[#39ff14] ml-1"></span>

@@ -532,8 +532,29 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
   } : {}
 
   return (
-    <div className="App min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 neon-theme:from-[#101d12] neon-theme:via-[#1a2f1d] neon-theme:to-[#101d12]">
-      <header className="bg-white dark:bg-slate-800 neon-theme:bg-[#1a2f1d] border-b border-gray-200 dark:border-slate-700 neon-theme:border-[#39ff14] px-6 py-4 sticky top-0 z-10 shadow-lg flex-shrink-0">
+    <div className="App min-h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 neon-theme:from-[#101d12] neon-theme:via-[#1a2f1d] neon-theme:to-[#101d12] relative overflow-hidden">
+      {/* Floating Animation Objects - Behind everything except header */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating emojis */}
+        <div className="floating-object absolute top-[15%] left-[8%] text-4xl opacity-20 animate-float-slow">🚀</div>
+        <div className="floating-object absolute top-[25%] right-[12%] text-3xl opacity-15 animate-float-medium">⚡</div>
+        <div className="floating-object absolute top-[65%] left-[3%] text-5xl opacity-20 animate-float-fast">💡</div>
+        <div className="floating-object absolute bottom-[15%] right-[8%] text-4xl opacity-25 animate-float-slow">🎯</div>
+        <div className="floating-object absolute top-[45%] right-[4%] text-3xl opacity-15 animate-float-medium">✨</div>
+        <div className="floating-object absolute bottom-[35%] left-[12%] text-4xl opacity-20 animate-float-fast">🤖</div>
+        <div className="floating-object absolute top-[75%] right-[20%] text-3xl opacity-15 animate-float-slow">🔥</div>
+        <div className="floating-object absolute top-[35%] left-[20%] text-5xl opacity-10 animate-float-medium">💻</div>
+        <div className="floating-object absolute bottom-[50%] right-[30%] text-3xl opacity-15 animate-float-fast">📁</div>
+        <div className="floating-object absolute top-[55%] left-[35%] text-4xl opacity-10 animate-float-slow">🧠</div>
+        
+        {/* Floating circles */}
+        <div className="absolute top-[20%] left-[15%] w-24 h-24 bg-purple-400 dark:bg-purple-600 neon-theme:bg-[#39ff14] rounded-full opacity-8 animate-bounce-slow"></div>
+        <div className="absolute bottom-[30%] right-[18%] w-32 h-32 bg-blue-400 dark:bg-blue-600 neon-theme:bg-[#baffc9] rounded-full opacity-8 animate-bounce-medium"></div>
+        <div className="absolute top-[60%] left-[45%] w-20 h-20 bg-green-400 dark:bg-green-600 neon-theme:bg-[#39ff14] rounded-full opacity-8 animate-bounce-fast"></div>
+        <div className="absolute bottom-[60%] right-[40%] w-16 h-16 bg-indigo-400 dark:bg-indigo-600 neon-theme:bg-[#baffc9] rounded-full opacity-8 animate-bounce-medium"></div>
+      </div>
+
+      <header className="bg-white dark:bg-slate-800 neon-theme:bg-[#1a2f1d] border-b border-gray-200 dark:border-slate-700 neon-theme:border-[#39ff14] px-6 py-4 sticky top-0 z-10 shadow-lg flex-shrink-0 relative">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
           <div className="flex items-center gap-3">
             {/* Toggle Chat History Button */}
@@ -553,7 +574,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
                 </div>
               </div>
               <span className="text-xl font-bold transition-colors duration-300 text-gray-800 dark:text-white neon-theme:text-[#39ff14]">
-                <span className="transition-colors duration-300 text-purple-700 dark:text-purple-400 neon-theme:text-[#39ff14]">THUNDER BOLT</span>
+                <span className="transition-colors duration-300 text-purple-700 dark:text-purple-400 neon-theme:text-[#39ff14]">THUNDER </span>
                 <span className="ml-1 transition-colors duration-300 text-gray-800 dark:text-gray-200 neon-theme:text-[#39ff14]">AI ⚡</span>
               </span>
             </div>
@@ -580,7 +601,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
       </header>
 
       {uploadProgress > 0 && uploadProgress < 100 && (
-        <div className="bg-blue-50 dark:bg-blue-900 neon-theme:bg-[#142a18] border-b border-blue-100 dark:border-blue-800 neon-theme:border-[#39ff14] px-6 py-3">
+        <div className="bg-blue-50 dark:bg-blue-900 neon-theme:bg-[#142a18] border-b border-blue-100 dark:border-blue-800 neon-theme:border-[#39ff14] px-6 py-3 relative z-10">
           <div className="flex items-center gap-3 max-w-7xl mx-auto">
             <div className="flex items-center gap-2">
               <div className="w-5 h-5 border-2 border-blue-600 dark:border-blue-400 neon-theme:border-[#39ff14] border-t-transparent rounded-full animate-spin"></div>
@@ -597,7 +618,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
         </div>
       )}
 
-      <div className="flex-1 flex overflow-hidden">
+      <div className="flex-1 flex overflow-hidden relative z-10">
         {/* Chat History Sidebar */}
         <div className={`transition-all duration-300 ease-in-out ${showChatHistory ? 'w-64 opacity-100' : 'w-0 opacity-0 overflow-hidden'}`}>
           {showChatHistory && (
