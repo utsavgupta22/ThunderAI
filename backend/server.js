@@ -30,8 +30,13 @@ await connectDB()
 // Use this for free tier from: https://makersuite.google.com/app/apikey
 const API_KEY_SOURCE = process.env.API_KEY_SOURCE || 'makersuite' // 'makersuite' or 'cloud'
 
-// Middleware
-app.use(cors())
+// Middleware - CORS Configuration (Allow all domains)
+app.use(cors({
+  origin: '*', // Allow all origins
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: false // Set to false when using origin: '*'
+}))
 app.use(express.json({ limit: '50mb' }))
 app.use(express.urlencoded({ limit: '50mb', extended: true }))
 
