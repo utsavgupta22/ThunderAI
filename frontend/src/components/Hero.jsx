@@ -1,10 +1,44 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import ThemeToggle from './ThemeToggle'
 import UserMenu from './UserMenu'
 import Settings from './Settings'
 
 function Hero({ onGetStarted, user, authToken, onLogout }) {
   const [showSettings, setShowSettings] = useState(false)
+  const [typedText, setTypedText] = useState('')
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [loopNum, setLoopNum] = useState(0)
+  const [typingSpeed, setTypingSpeed] = useState(150)
+
+  const textToType = 'Multi-AI Chat Platform'
+
+  // Typing animation effect
+  useEffect(() => {
+    const handleTyping = () => {
+      const i = loopNum % 1
+      const fullText = textToType
+
+      if (!isDeleting) {
+        setTypedText(fullText.substring(0, typedText.length + 1))
+        setTypingSpeed(150)
+
+        if (typedText === fullText) {
+          setTimeout(() => setIsDeleting(true), 2000)
+        }
+      } else {
+        setTypedText(fullText.substring(0, typedText.length - 1))
+        setTypingSpeed(100)
+
+        if (typedText === '') {
+          setIsDeleting(false)
+          setLoopNum(loopNum + 1)
+        }
+      }
+    }
+
+    const timer = setTimeout(handleTyping, typingSpeed)
+    return () => clearTimeout(timer)
+  }, [typedText, isDeleting, loopNum, typingSpeed])
 
   const handleApiKeyUpdated = () => {
     setShowSettings(false)
@@ -12,7 +46,25 @@ function Hero({ onGetStarted, user, authToken, onLogout }) {
   }
 
   return (
-  <div className="w-full h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 neon-theme:from-[#101d12] neon-theme:via-[#1a2f1d] neon-theme:to-[#101d12]">
+  <div className="w-full h-screen flex flex-col bg-gradient-to-br from-blue-50 via-white to-indigo-50 dark:from-slate-900 dark:via-slate-800 dark:to-slate-900 neon-theme:from-[#101d12] neon-theme:via-[#1a2f1d] neon-theme:to-[#101d12] overflow-hidden relative">
+      {/* Floating Animation Objects */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        {/* Floating emojis */}
+        <div className="floating-object absolute top-[10%] left-[10%] text-4xl opacity-30 animate-float-slow">🚀</div>
+        <div className="floating-object absolute top-[20%] right-[15%] text-3xl opacity-20 animate-float-medium">⚡</div>
+        <div className="floating-object absolute top-[60%] left-[5%] text-5xl opacity-25 animate-float-fast">💡</div>
+        <div className="floating-object absolute bottom-[20%] right-[10%] text-4xl opacity-30 animate-float-slow">🎯</div>
+        <div className="floating-object absolute top-[40%] right-[5%] text-3xl opacity-20 animate-float-medium">✨</div>
+        <div className="floating-object absolute bottom-[40%] left-[15%] text-4xl opacity-25 animate-float-fast">🤖</div>
+        <div className="floating-object absolute top-[70%] right-[25%] text-3xl opacity-20 animate-float-slow">🔥</div>
+        <div className="floating-object absolute top-[30%] left-[25%] text-5xl opacity-15 animate-float-medium">💻</div>
+        
+        {/* Floating circles */}
+        <div className="absolute top-[15%] left-[20%] w-20 h-20 bg-purple-400 dark:bg-purple-600 neon-theme:bg-[#39ff14] rounded-full opacity-10 animate-bounce-slow"></div>
+        <div className="absolute bottom-[25%] right-[20%] w-32 h-32 bg-blue-400 dark:bg-blue-600 neon-theme:bg-[#baffc9] rounded-full opacity-10 animate-bounce-medium"></div>
+        <div className="absolute top-[50%] left-[40%] w-16 h-16 bg-green-400 dark:bg-green-600 neon-theme:bg-[#39ff14] rounded-full opacity-10 animate-bounce-fast"></div>
+      </div>
+
       {/* Header */}
   <header className="bg-white dark:bg-slate-800 neon-theme:bg-[#1a2f1d] border-b border-gray-200 dark:border-slate-700 neon-theme:border-[#39ff14] px-6 py-4 sticky top-0 z-10 shadow-lg flex-shrink-0">
         <div className="max-w-7xl mx-auto flex justify-between items-center">
@@ -24,7 +76,7 @@ function Hero({ onGetStarted, user, authToken, onLogout }) {
             </div>
             <span className="text-xl font-bold transition-colors duration-300
               text-gray-800 dark:text-white neon-theme:text-[#39ff14]">
-              <span className="transition-colors duration-300 text-purple-700 dark:text-purple-400 neon-theme:text-[#39ff14]">THUNDER BOLT</span>
+              <span className="transition-colors duration-300 text-purple-700 dark:text-purple-400 neon-theme:text-[#39ff14]">THUNDER</span>
               <span className="ml-1 transition-colors duration-300 text-gray-800 dark:text-gray-200 neon-theme:text-[#39ff14]">AI ⚡</span>
               <span className="align-middle transition-colors duration-300 text-gray-800 dark:text-white neon-theme:text-[#39ff14]"> </span>
             </span>
@@ -60,11 +112,10 @@ function Hero({ onGetStarted, user, authToken, onLogout }) {
                 ⚡ Powered by Google Gemini AI
               </div>
               <h1 className="text-5xl md:text-6xl font-bold leading-tight text-gray-900 dark:text-white neon-theme:text-[#39ff14]">
-                Multi-AI{' '}
-                <span className="text-purple-600 dark:text-purple-400 neon-theme:text-[#baffc9]">
-                  Chat
-                </span>{' '}
-                Platform
+                <span className="inline-block">
+                  {typedText}
+                  <span className="animate-blink border-r-4 border-purple-600 dark:border-purple-400 neon-theme:border-[#39ff14] ml-1"></span>
+                </span>
               </h1>
               <p className="text-lg text-gray-700 dark:text-gray-300 neon-theme:text-[#baffc9] leading-relaxed">
                 One platform, multiple AI models. Chat with Gemini, ChatGPT, Claude & Perplexity.
