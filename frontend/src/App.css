@@ -1,4 +1,3 @@
-
 html, body, #root, .App {
   height: 100vh;
   min-height: 100vh;
@@ -305,5 +304,93 @@ html.neon-theme body {
 
 .neon-theme .neon-theme\:text-\[#8ffa70\] {
   color: #8ffa70 !important;
+}
+
+/* Dark Theme - Input Placeholder Text */
+.dark-theme input::placeholder,
+.dark-theme textarea::placeholder {
+  color: #94a3b8 !important; /* Ensure placeholder text is visible */
+  opacity: 1; /* Make it fully opaque */
+}
+
+/* Dark Theme - Input Text */
+.dark-theme input,
+.dark-theme textarea {
+  color: #f1f5f9 !important; /* Ensure input text is visible */
+}
+
+/* Button Hover Styles - Better Contrast */
+/* Light Theme Green Button Hover - Light Pink Background */
+.light-theme .bg-gradient-to-r.from-green-600.to-emerald-600:hover:not(:disabled) {
+  background: linear-gradient(to right, #fce7f3, #fbcfe8) !important;
+  color: #ec4899 !important;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.2) !important;
+}
+
+/* Dark Theme Green Button Hover - Light Pink Background */
+.dark-theme .bg-gradient-to-r.from-green-600.to-emerald-600:hover:not(:disabled) {
+  background: linear-gradient(to right, #fce7f3, #fbcfe8) !important;
+  color: #ec4899 !important;
+  box-shadow: 0 4px 12px rgba(236, 72, 153, 0.3) !important;
+}
+
+/* Neon Theme Green Button Hover */
+.neon-theme .bg-gradient-to-r.from-green-600.to-emerald-600:hover:not(:disabled) {
+  background: #39ff14 !important;
+  color: #0a150c !important;
+  box-shadow: 0 0 15px rgba(57, 255, 20, 0.5) !important;
+}
+
+/* Link Hover Styles */
+.light-theme a:hover {
+  color: #ec4899 !important;
+}
+
+.dark-theme a:hover {
+  color: #f472b6 !important;
+}
+
+.neon-theme a:hover {
+  color: #39ff14 !important;
+}
+
+/* Light theme chat history hover */
+.light-theme .chat-history-item:hover,
+.light-theme [role="button"]:hover {
+  background-color: #eff6ff !important;  /* Light blue background */
+  color: #1e3a8a !important;             /* Dark blue text */
+}
+
+.light-theme [role="button"]:hover h3,
+.light-theme [role="button"]:hover p {
+  color: #1e3a8a !important;
+}
+
+/* Light theme chat history item hover - Fixed */
+.light-theme .chat-history-item:hover {
+  background-color: #eff6ff !important;  /* Light blue like selected state */
+}
+
+.light-theme .chat-history-item:hover .chat-history-title,
+.light-theme .chat-history-item:hover .chat-history-meta {
+  color: #1e3a8a !important;  /* Dark blue for readability */
+}
+
+/* Light theme button hover - General fix for all buttons */
+.light-theme button:hover:not(:disabled):not(.bg-red-500):not(.bg-blue-600) {
+  background-color: #dbeafe !important; /* Light blue */
+  color: #1e3a8a !important; /* Dark blue text */
+}
+
+/* Ensure toggle buttons remain readable on hover in light theme */
+.light-theme .hover\:bg-gray-100:hover,
+.light-theme .hover\:bg-gray-200:hover {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
+}
+
+.light-theme .hover\:bg-blue-100:hover {
+  background-color: #dbeafe !important;
+  color: #1e40af !important;
 }
 

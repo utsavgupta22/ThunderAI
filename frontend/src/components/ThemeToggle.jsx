@@ -73,22 +73,22 @@ function ThemeToggle() {
     <div className="relative">
       <button
         onClick={() => setShowMenu(!showMenu)}
-        className="p-2 rounded-lg hover:bg-gray-200 dark:hover:bg-gray-700 transition flex items-center gap-1"
+        className="p-2 rounded-lg hover:bg-blue-100 dark:hover:bg-slate-700 neon-theme:hover:bg-[#142a18] transition flex items-center gap-1 hover:text-blue-700 dark:hover:text-white neon-theme:hover:text-[#39ff14]"
         title="Toggle theme"
       >
         <span className="text-lg">{themeIcons[theme]}</span>
       </button>
 
       {showMenu && (
-        <div className="absolute right-0 mt-2 bg-white dark:bg-gray-800 rounded-lg shadow-lg border border-gray-200 dark:border-gray-700 z-50">
+        <div className="absolute right-0 mt-2 bg-white dark:bg-slate-800 neon-theme:bg-[#1a2f1d] rounded-lg shadow-lg border border-gray-200 dark:border-slate-700 neon-theme:border-[#39ff14] z-50">
           {Object.entries(themeLabels).map(([key, label]) => (
             <button
               key={key}
               onClick={() => handleThemeChange(key)}
               className={`w-full px-4 py-2 text-left text-sm flex items-center gap-2 transition ${
                 theme === key
-                  ? 'bg-blue-100 dark:bg-blue-900 text-blue-900 dark:text-blue-100 font-semibold'
-                  : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-700 dark:text-gray-300'
+                  ? 'bg-blue-100 dark:bg-blue-900 neon-theme:bg-[#142a18] text-blue-900 dark:text-blue-100 neon-theme:text-[#39ff14] font-semibold'
+                  : 'hover:bg-blue-50 dark:hover:bg-slate-700 neon-theme:hover:bg-[#142a18] text-gray-700 dark:text-gray-300 neon-theme:text-[#baffc9] hover:text-blue-900 dark:hover:text-white neon-theme:hover:text-[#39ff14]'
               }`}
             >
               <span className="text-lg">{themeIcons[key]}</span>

@@ -121,25 +121,31 @@ const MessageRenderer = ({ content }) => {
           },
           // Style other markdown elements
           p({ children }) {
-            return <p className="mb-3 leading-relaxed">{children}</p>;
+            return <p className="mb-3 leading-relaxed text-gray-800 dark:text-gray-200 neon-theme:text-[#baffc9]">{children}</p>;
           },
           ul({ children }) {
-            return <ul className="list-disc list-inside mb-3 ml-4">{children}</ul>;
+            return <ul className="list-disc list-inside mb-3 ml-4 text-gray-700 dark:text-gray-300 neon-theme:text-[#8ffa70]">{children}</ul>;
           },
           ol({ children }) {
-            return <ol className="list-decimal list-inside mb-3 ml-4">{children}</ol>;
+            return <ol className="list-decimal list-inside mb-3 ml-4 text-gray-700 dark:text-gray-300 neon-theme:text-[#8ffa70]">{children}</ol>;
           },
           li({ children }) {
             return <li className="mb-1">{children}</li>;
           },
           h1({ children }) {
-            return <h1 className="text-2xl font-bold mb-3 mt-4">{children}</h1>;
+            return <h1 className="text-2xl font-bold mb-3 mt-4 text-blue-700 dark:text-blue-400 neon-theme:text-[#39ff14]">{children}</h1>;
           },
           h2({ children }) {
-            return <h2 className="text-xl font-bold mb-3 mt-3">{children}</h2>;
+            return <h2 className="text-xl font-bold mb-3 mt-3 text-indigo-700 dark:text-indigo-400 neon-theme:text-[#39ff14]">{children}</h2>;
           },
           h3({ children }) {
-            return <h3 className="text-lg font-bold mb-2 mt-3">{children}</h3>;
+            return <h3 className="text-lg font-bold mb-2 mt-3 text-purple-700 dark:text-purple-400 neon-theme:text-[#39ff14]">{children}</h3>;
+          },
+          strong({ children }) {
+            return <strong className="font-bold text-pink-700 dark:text-pink-400 neon-theme:text-[#39ff14]">{children}</strong>;
+          },
+          em({ children }) {
+            return <em className="italic text-cyan-700 dark:text-cyan-400 neon-theme:text-[#baffc9]">{children}</em>;
           },
           blockquote({ children }) {
             return (

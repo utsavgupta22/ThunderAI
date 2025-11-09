@@ -4,7 +4,7 @@ import ProcessingIndicator from './ProcessingIndicator'
 
 function ChatWindow({ messages, messagesEndRef, loading, processingStage, processingDetails }) {
   return (
-    <div className="flex-1 overflow-y-auto p-6 space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 neon-theme:from-[#0a150c] neon-theme:to-[#142018]">
+    <div className="flex-1 overflow-y-auto overflow-x-hidden p-6 space-y-4 bg-gradient-to-br from-gray-50 to-gray-100 dark:from-slate-900 dark:to-slate-800 neon-theme:from-[#0a150c] neon-theme:to-[#142018]">
       {messages.length === 0 ? (
         <div className="flex flex-col items-center justify-center h-full text-center space-y-6 py-12">
           <div className="mb-6">
@@ -42,20 +42,22 @@ function ChatWindow({ messages, messagesEndRef, loading, processingStage, proces
                 </div>
               )}
               <div
-                className={`max-w-2xl rounded-lg px-4 py-3 shadow-sm border ${
+                className={`max-w-[85%] rounded-lg px-4 py-3 shadow-sm border break-words ${
                   message.sender === 'user'
                     ? 'bg-blue-600 dark:bg-blue-700 neon-theme:bg-[#39ff14] text-white dark:text-white neon-theme:text-[#101d12] border-blue-600 dark:border-blue-700 neon-theme:border-[#39ff14]'
                     : 'bg-white dark:bg-slate-700 neon-theme:bg-[#142018] text-gray-800 dark:text-gray-200 neon-theme:text-[#8ffa70] border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14]'
                 }`}
               >
                 {message.sender === 'user' ? (
-                  <p className="whitespace-pre-wrap leading-relaxed">{message.text}</p>
+                  <p className="whitespace-pre-wrap leading-relaxed break-words">{message.text}</p>
                 ) : (
-                  <MessageRenderer content={message.text} />
+                  <div className="overflow-x-auto">
+                    <MessageRenderer content={message.text} />
+                  </div>
                 )}
               </div>
               {message.sender === 'user' && (
-                <div className="w-8 h-8 bg-green-100 dark:bg-green-900 neon-theme:bg-[#142018] rounded-full flex items-center justify-center flex-shrink-0 border border-gray-300 dark:border-slate-600 neon-theme:border-[#39ff14] shadow-sm">
+                <div className="w-8 h-8 bg-gradient-to-br from-green-500 to-emerald-600 dark:from-green-600 dark:to-emerald-700 neon-theme:from-[#39ff14] neon-theme:to-[#baffc9] rounded-full flex items-center justify-center flex-shrink-0 border border-gray-300 dark:border-slate-600 neon-theme:border-[#39ff14] shadow-sm">
                   <span className="text-sm">👤</span>
                 </div>
               )}
@@ -66,7 +68,7 @@ function ChatWindow({ messages, messagesEndRef, loading, processingStage, proces
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 dark:from-purple-600 dark:to-indigo-700 neon-theme:from-[#39ff14] neon-theme:to-[#baffc9] rounded-full flex items-center justify-center flex-shrink-0 border border-gray-300 dark:border-slate-600 neon-theme:border-[#39ff14] shadow-sm">
                 <span className="text-sm">🤖</span>
               </div>
-              <div className="max-w-2xl flex-1">
+              <div className="max-w-[85%] flex-1">
                 <ProcessingIndicator stage={processingStage} details={processingDetails} />
               </div>
             </div>
@@ -76,7 +78,7 @@ function ChatWindow({ messages, messagesEndRef, loading, processingStage, proces
               <div className="w-8 h-8 bg-gradient-to-br from-purple-500 to-indigo-600 dark:from-purple-600 dark:to-indigo-700 neon-theme:from-[#39ff14] neon-theme:to-[#baffc9] rounded-full flex items-center justify-center flex-shrink-0 border border-gray-300 dark:border-slate-600 neon-theme:border-[#39ff14] shadow-sm">
                 <span className="text-sm">🤖</span>
               </div>
-              <div className="bg-white dark:bg-slate-700 neon-theme:bg-[#142018] rounded-lg px-4 py-3 shadow-sm border border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14]">
+              <div className="bg-white dark:bg-slate-700 neon-theme:bg-[#142018] rounded-lg px-4 py-3 shadow-sm border border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14] max-w-[85%]">
                 <div className="flex items-center gap-3">
                   <div className="flex gap-1.5">
                     <span className="w-2 h-2 bg-blue-500 dark:bg-blue-400 neon-theme:bg-[#39ff14] rounded-full animate-bounce" style={{ animationDelay: '0s' }}></span>

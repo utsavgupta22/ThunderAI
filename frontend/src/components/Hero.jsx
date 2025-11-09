@@ -186,8 +186,8 @@ function Hero({ onGetStarted, user, authToken, onLogout }) {
               <span className="font-semibold text-gray-900 dark:text-white neon-theme:text-[#39ff14]">Luv AI</span>
             </div>
             <div className="text-center text-sm text-gray-600 dark:text-gray-300 neon-theme:text-[#baffc9]">
-              <p>Powered by Google Gemini AI</p>
-              <p>Created with ❤️ by <span className="text-purple-600 dark:text-purple-400 neon-theme:text-[#39ff14] font-semibold">Luv Gupta</span></p>
+              <p>Powered by Multiple Agents</p>
+              <p>Created by <span className="text-purple-600 dark:text-purple-400 neon-theme:text-[#39ff14] font-semibold">Luv Gupta</span></p>
             </div>
           </div>
         </div>

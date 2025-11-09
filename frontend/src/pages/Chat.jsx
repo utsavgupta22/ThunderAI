@@ -3,6 +3,7 @@ import ChatWindow from '../components/ChatWindow'
 import { buildApiUrl } from '../utils/api'
 import InputArea from '../components/InputArea'
 import FileUpload from '../components/FileUpload'
+import UploadedFilesList from '../components/UploadedFilesList'
 import Settings from '../components/Settings'
 import BotSelector from '../components/BotSelector'
 import ThemeToggle from '../components/ThemeToggle'
@@ -24,6 +25,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
   const [processingStage, setProcessingStage] = useState(null)
   const [processingDetails, setProcessingDetails] = useState('')
   const messagesEndRef = useRef(null)
+  const abortControllerRef = useRef(null)
 
   // Set initial API key based on selected bot and user
   useEffect(() => {
@@ -181,10 +183,12 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
         
         if (response.ok) {
           const data = await response.json()
-          console.log('Chat created successfully:', data.chat.id)
-          setCurrentChatId(data.chat.id)
+          // Backend returns _id, use it consistently
+          const newChatId = data.chat._id || data.chat.id
+          console.log('Chat created successfully:', newChatId)
+          setCurrentChatId(newChatId)
           await loadChatHistory()
-          return data.chat.id
+          return newChatId
         } else {
           console.error('Failed to create chat:', response.status)
         }
@@ -297,6 +301,9 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
   const handleSendMessage = async (message) => {
     if (!message.trim()) return
 
+    // Create new abort controller for this request
+    abortControllerRef.current = new AbortController()
+
     const userMessage = {
       id: Date.now(),
       text: message,
@@ -354,7 +361,8 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
           uploadedFiles,
           provider: selectedBot,
           conversationHistory: messages
-        })
+        }),
+        signal: abortControllerRef.current.signal
       })
 
       if (!response.ok) {
@@ -453,17 +461,41 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
       console.error('Chat error:', error)
       setProcessingStage(null)
       setProcessingDetails('')
-      setMessages(prev => {
-        const updated = [...prev]
-        updated[updated.length - 1] = {
-          ...updated[updated.length - 1],
-          text: `❌ Error: ${error.message}`,
-          sender: 'error'
-        }
-        return updated
-      })
+      
+      // Check if it was aborted
+      if (error.name === 'AbortError') {
+        setMessages(prev => {
+          const updated = [...prev]
+          updated[updated.length - 1] = {
+            ...updated[updated.length - 1],
+            text: (updated[updated.length - 1].text || '') + '\n\n⚠️ *Response stopped by user*',
+            sender: 'assistant'
+          }
+          return updated
+        })
+      } else {
+        setMessages(prev => {
+          const updated = [...prev]
+          updated[updated.length - 1] = {
+            ...updated[updated.length - 1],
+            text: `❌ Error: ${error.message}`,
+            sender: 'error'
+          }
+          return updated
+        })
+      }
     } finally {
       setLoading(false)
+      abortControllerRef.current = null
+    }
+  }
+
+  const handleStopGeneration = () => {
+    if (abortControllerRef.current) {
+      abortControllerRef.current.abort()
+      setLoading(false)
+      setProcessingStage(null)
+      setProcessingDetails('')
     }
   }
 
@@ -590,7 +622,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
                 <div className="flex items-center gap-2">
                   <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
                   <span className="text-sm font-medium text-gray-700 dark:text-gray-200 neon-theme:text-[#39ff14]">
-                    {chats.find(c => c.id === currentChatId)?.title || 'Current Chat'}
+                    {chats.find(c => (c._id || c.id) === currentChatId)?.title || 'Current Chat'}
                   </span>
                 </div>
                 <span className="text-xs text-gray-500 dark:text-gray-400 neon-theme:text-[#8ffa70]">
@@ -608,65 +640,46 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
               processingDetails={processingDetails}
             />
           </div>
-          <InputArea onSendMessage={handleSendMessage} disabled={loading} />
+          <div className="relative">
+            <InputArea onSendMessage={handleSendMessage} disabled={loading} />
+            {loading && (
+              <div className="absolute -top-12 left-1/2 transform -translate-x-1/2">
+                <button
+                  onClick={handleStopGeneration}
+                  className="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded-lg shadow-lg transition flex items-center gap-2 animate-pulse"
+                  title="Stop generating"
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 10a1 1 0 011-1h4a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 01-1-1v-4z" />
+                  </svg>
+                  Stop Generating
+                </button>
+              </div>
+            )}
+          </div>
         </div>
 
         {/* Sidebar */}
         <div className="w-80 flex flex-col gap-4 flex-shrink-0">
           {/* File Upload */}
           <FileUpload onFileUpload={handleFileUpload} disabled={loading} />
+          
           {/* Uploaded Files List */}
-          {uploadedFiles.length > 0 && (
-            <div className="bg-white dark:bg-slate-700 neon-theme:bg-[#1a2f1d] rounded-xl shadow-sm border border-gray-200 dark:border-slate-600 neon-theme:border-[#39ff14] p-4 max-h-60 overflow-y-auto">
-              <div className="flex items-center justify-between mb-3">
-                <h3 className="font-semibold text-gray-800 dark:text-white neon-theme:text-[#39ff14] flex items-center gap-2">
-                  <span className="text-gray-700 dark:text-white neon-theme:text-[#39ff14]">📄</span>
-                  Uploaded Files
-                </h3>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs bg-blue-100 dark:bg-blue-900 neon-theme:bg-[#142a18] text-blue-700 dark:text-blue-200 neon-theme:text-[#39ff14] px-2 py-1 rounded-full font-medium">
-                    {uploadedFiles.length}
-                  </span>
-                  <button
-                    onClick={() => {
-                      setUploadedFiles([])
-                      setMessages(prev => [...prev, {
-                        id: Date.now(),
-                        text: '🗑️ All files cleared. You can now ask general questions without file context.',
-                        sender: 'system',
-                        timestamp: new Date()
-                      }])
-                    }}
-                    className="text-xs bg-red-100 dark:bg-red-900 hover:bg-red-200 dark:hover:bg-red-800 neon-theme:bg-[#1a2f1d] neon-theme:hover:bg-[#142a18] text-red-700 dark:text-red-200 neon-theme:text-[#ff6b6b] px-2 py-1 rounded transition flex items-center gap-1"
-                    title="Clear all files"
-                  >
-                    <svg className="w-3 h-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                    </svg>
-                    Clear All
-                  </button>
-                </div>
-              </div>
-              <div className="space-y-2">
-                {uploadedFiles.map((file, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between bg-gray-50 dark:bg-slate-600 neon-theme:bg-[#142a18] p-3 rounded-lg text-sm text-gray-700 dark:text-gray-200 neon-theme:text-[#baffc9] hover:bg-gray-100 dark:hover:bg-slate-500 neon-theme:hover:bg-[#1a2f1d] transition group"
-                  >
-                    <span className="truncate flex-1">{file}</span>
-                    <button
-                      onClick={() => handleRemoveFile(file)}
-                      className="ml-2 text-gray-400 dark:text-gray-500 neon-theme:text-[#8ffa70] hover:text-red-500 dark:hover:text-red-400 neon-theme:hover:text-red-500 transition opacity-0 group-hover:opacity-100"
-                    >
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                      </svg>
-                    </button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
+          <UploadedFilesList
+            files={uploadedFiles}
+            onRemoveFile={handleRemoveFile}
+            onClearAll={() => {
+              setUploadedFiles([])
+              setMessages(prev => [...prev, {
+                id: Date.now(),
+                text: '🗑️ All files cleared. You can now ask general questions without file context.',
+                sender: 'system',
+                timestamp: new Date()
+              }])
+            }}
+          />
+          
           {/* AI Model Option Buttons (Gemini & others) */}
           <div className="rounded-xl p-4 border border-blue-100 dark:border-blue-800 neon-theme:border-[#39ff14] bg-gradient-to-br from-blue-50 to-indigo-50 dark:from-slate-800 dark:to-slate-900 neon-theme:from-[#142a18] neon-theme:to-[#1a2f1d] transition-colors duration-300">
             <h4 className="font-semibold text-gray-800 dark:text-white neon-theme:text-[#39ff14] mb-3 text-sm">🤖 Select AI Model</h4>

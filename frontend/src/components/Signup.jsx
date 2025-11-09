@@ -65,29 +65,29 @@ function Signup({ onSignup, onSwitchToLogin }) {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-6">
-      <div className="bg-white rounded-xl shadow-lg p-10 max-w-lg w-full border border-gray-200">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-white to-indigo-50 p-3 overflow-y-auto">
+      <div className="bg-white rounded-xl shadow-lg p-6 max-w-lg w-full border border-gray-200 my-4">
         {/* Icon */}
-        <div className="flex justify-center mb-6">
-          <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center border border-gray-300 shadow-md">
-            <span className="text-4xl">✨</span>
+        <div className="flex justify-center mb-3">
+          <div className="w-14 h-14 bg-gradient-to-br from-green-500 to-emerald-600 rounded-2xl flex items-center justify-center border border-gray-300 shadow-md">
+            <span className="text-3xl">✨</span>
           </div>
         </div>
 
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">
+        <div className="text-center mb-5">
+          <h1 className="text-2xl font-bold text-gray-900 mb-1">
             Create Account
           </h1>
           <p className="text-gray-600">
-            Join Magnus AI today
+            
           </p>
         </div>
         
         {/* Form */}
-        <form onSubmit={handleSubmit} className="space-y-4">
+        <form onSubmit={handleSubmit} className="space-y-3">
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs font-semibold text-gray-700 mb-1">
               Full Name *
             </label>
             <input
@@ -98,12 +98,12 @@ function Signup({ onSignup, onSwitchToLogin }) {
                 setError('')
               }}
               placeholder="John Doe"
-              className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition"
+              className="w-full px-3 py-2 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white transition"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs font-semibold text-gray-700 mb-1">
               Email *
             </label>
             <input
@@ -114,12 +114,12 @@ function Signup({ onSignup, onSwitchToLogin }) {
                 setError('')
               }}
               placeholder="you@example.com"
-              className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition"
+              className="w-full px-3 py-2 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white transition"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs font-semibold text-gray-700 mb-1">
               Password *
             </label>
             <div className="relative">
@@ -131,12 +131,12 @@ function Signup({ onSignup, onSwitchToLogin }) {
                   setError('')
                 }}
                 placeholder="Minimum 6 characters"
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition pr-12"
+                className="w-full px-3 py-2 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white transition pr-10"
               />
               <button
                 type="button"
                 onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm"
               >
                 {showPassword ? '👁️' : '👁️‍🗨️'}
               </button>
@@ -144,7 +144,7 @@ function Signup({ onSignup, onSwitchToLogin }) {
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs font-semibold text-gray-700 mb-1">
               Confirm Password *
             </label>
             <input
@@ -155,12 +155,12 @@ function Signup({ onSignup, onSwitchToLogin }) {
                 setError('')
               }}
               placeholder="Re-enter password"
-              className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition"
+              className="w-full px-3 py-2 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white transition"
             />
           </div>
 
           <div>
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
+            <label className="block text-xs font-semibold text-gray-700 mb-1">
               Gemini API Key (Optional)
             </label>
             <div className="relative">
@@ -172,21 +172,21 @@ function Signup({ onSignup, onSwitchToLogin }) {
                   setError('')
                 }}
                 placeholder="AIzaSy... (optional)"
-                className="w-full px-4 py-3 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:bg-white transition pr-12"
+                className="w-full px-3 py-2 bg-gray-50 border-2 border-gray-200 text-gray-800 rounded-lg focus:outline-none focus:border-blue-500 focus:bg-white transition pr-10"
               />
               <button
                 type="button"
                 onClick={() => setShowApiKey(!showApiKey)}
-                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600 text-sm"
               >
                 {showApiKey ? '🔓' : '🔒'}
               </button>
             </div>
-            <p className="text-xs text-gray-500 mt-1">You can add this later in settings</p>
+            <p className="text-xs text-gray-500 mt-0.5">You can add this later in settings</p>
           </div>
 
           {error && (
-            <div className="bg-red-50 border-2 border-red-200 text-red-700 px-4 py-3 rounded-xl text-sm flex items-start gap-2">
+            <div className="bg-red-50 border-2 border-red-200 text-red-700 px-3 py-2 rounded-lg text-xs flex items-start gap-2">
               <svg className="w-5 h-5 flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                 <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clipRule="evenodd" />
               </svg>
@@ -197,14 +197,14 @@ function Signup({ onSignup, onSwitchToLogin }) {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-3 rounded-lg transition shadow-md hover:shadow-lg disabled:shadow-none"
+            className="w-full bg-gradient-to-r from-green-600 to-emerald-600 disabled:from-gray-400 disabled:to-gray-400 text-white font-semibold py-2 rounded-lg transition shadow-md disabled:shadow-none text-sm"
           >
             {loading ? '🔄 Creating Account...' : 'Create Account →'}
           </button>
 
           {/* Switch to Login */}
-          <div className="text-center pt-4">
-            <p className="text-sm text-gray-600">
+          <div className="text-center pt-2">
+            <p className="text-xs text-gray-600">
               Already have an account?{' '}
               <button
                 type="button"
@@ -217,9 +217,9 @@ function Signup({ onSignup, onSwitchToLogin }) {
           </div>
 
           {/* Creator Signature */}
-          <div className="text-center pt-2">
+          <div className="text-center pt-1">
             <p className="text-xs text-gray-500">
-              Created with ❤️ by <span className="text-purple-600 font-semibold">Luv Gupta</span>
+              Created by <span className="text-purple-600 font-semibold">Luv Gupta</span>
             </p>
           </div>
         </form>
