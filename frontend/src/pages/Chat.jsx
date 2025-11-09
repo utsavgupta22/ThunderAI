@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react'
 import ChatWindow from '../components/ChatWindow'
+import { buildApiUrl } from '../utils/api'
 import InputArea from '../components/InputArea'
 import FileUpload from '../components/FileUpload'
 import Settings from '../components/Settings'
@@ -55,7 +56,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
 
   const loadChatHistory = async () => {
     try {
-      const response = await fetch('/api/chats', {
+      const response = await fetch(buildApiUrl('/chats'), {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }
@@ -89,7 +90,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
 
   const handleSelectChat = async (chatId) => {
     try {
-      const response = await fetch(`/api/chats/${chatId}`, {
+      const response = await fetch(buildApiUrl(`/chats/${chatId}`), {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }
@@ -111,7 +112,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
 
   const handleDeleteChat = async (chatId) => {
     try {
-      const response = await fetch(`/api/chats/${chatId}`, {
+      const response = await fetch(buildApiUrl(`/chats/${chatId}`), {
         method: 'DELETE',
         headers: {
           'Authorization': `Bearer ${authToken}`
@@ -133,7 +134,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
 
   const handleRenameChat = async (chatId, newTitle) => {
     try {
-      const response = await fetch(`/api/chats/${chatId}`, {
+      const response = await fetch(buildApiUrl(`/chats/${chatId}`), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
@@ -165,7 +166,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
         
         console.log('Creating new chat with title:', title)
         
-        const response = await fetch('/api/chats', {
+        const response = await fetch(buildApiUrl('/chats'), {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
@@ -195,7 +196,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
       try {
         console.log('Updating chat:', currentChatId, 'with', newMessages.length, 'messages')
         
-        const response = await fetch(`/api/chats/${currentChatId}`, {
+        const response = await fetch(buildApiUrl(`/chats/${currentChatId}`), {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
@@ -245,7 +246,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
       setUploadProgress(30)
       setProcessingDetails(`Uploading ${files.map(f => f.name).join(', ')}...`)
       
-      const response = await fetch('/api/upload', {
+      const response = await fetch(buildApiUrl('/upload'), {
         method: 'POST',
         body: formData
       })
@@ -341,7 +342,7 @@ function Chat({ user, authToken, onLogout, onNavigateHome, onApiKeyUpdated }) {
       setProcessingStage('processing')
       setProcessingDetails('Connecting to AI model...')
 
-      const response = await fetch('/api/chat', {
+      const response = await fetch(buildApiUrl('/chat'), {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

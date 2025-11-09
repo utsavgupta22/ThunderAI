@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { buildApiUrl } from '../utils/api'
 
 function Signup({ onSignup, onSwitchToLogin }) {
   const [name, setName] = useState('')
@@ -33,7 +34,7 @@ function Signup({ onSignup, onSwitchToLogin }) {
     setError('')
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/signup', {
+      const response = await fetch(buildApiUrl('/auth/signup'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ name, email, password, geminiApiKey })

@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { buildApiUrl } from '../utils/api'
 
 function ApiKeyInput({ onSubmit }) {
   const [apiKey, setApiKey] = useState('')
@@ -22,7 +23,7 @@ function ApiKeyInput({ onSubmit }) {
 
     try {
       // Test the API key first
-      const response = await fetch('http://localhost:5000/test-api-key', {
+      const response = await fetch(buildApiUrl('/test-api-key'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ apiKey })

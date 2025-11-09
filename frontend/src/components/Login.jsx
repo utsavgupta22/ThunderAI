@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { buildApiUrl } from '../utils/api'
 
 function Login({ onLogin, onSwitchToSignup }) {
   const [email, setEmail] = useState('')
@@ -19,10 +20,12 @@ function Login({ onLogin, onSwitchToSignup }) {
     setError('')
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/login', {
+      const token = localStorage.getItem('auth_token')
+      const response = await fetch(buildApiUrl('/auth/login'), {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
+        body: JSON.stringify({ email, password }),
+        ...(token && { headers: { Authorization: `Bearer ${token}` } })
       })
 
       const data = await response.json()

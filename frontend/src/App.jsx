@@ -4,6 +4,7 @@ import Hero from './components/Hero'
 import Login from './components/Login'
 import Signup from './components/Signup'
 import ApiKeyInput from './components/ApiKeyInput'
+import { buildApiUrl } from './utils/api'
 import './App.css'
 
 function App() {
@@ -92,7 +93,7 @@ function App() {
     // Refresh user data from server to get all updated keys
     console.log('Refreshing user data after API key update...')
     try {
-      const response = await fetch('/api/auth/me', {
+      const response = await fetch(buildApiUrl('/auth/me'), {
         headers: {
           'Authorization': `Bearer ${authToken}`
         }

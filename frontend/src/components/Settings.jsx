@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { buildApiUrl } from '../utils/api'
 
 function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
   const [geminiApiKey, setGeminiApiKey] = useState(user.geminiApiKey || '')
@@ -40,7 +41,7 @@ function Settings({ user, authToken, onClose, onApiKeysUpdated }) {
     })
 
     try {
-      const response = await fetch('http://localhost:5000/api/auth/update-api-keys', {
+      const response = await fetch(buildApiUrl('/auth/update-api-keys'), {
         method: 'PUT',
         headers: {
           'Content-Type': 'application/json',
