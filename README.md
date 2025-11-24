@@ -19,11 +19,8 @@ An interactive chat-based code assistant with support for multiple AI models inc
 ## 📸 Screenshots & Demo
 
 ### 🎨 Landing Page - Multi-AI Selection
-## Screenshots
 
-### Landing Page
-
-![Landing Page](public/assets/landing-screenshot.png)
+Beautiful landing page with typing animation, floating elements, and smooth transitions
 
 Beautiful landing page with typing animation, floating elements, and smooth transitions
 - Responsive design for all devices
