@@ -1,10 +1,10 @@
 ### Landing Page
 
-![Landing Page](public/assets/landing-screenshot.png)
+[![Landing Page](public/assets/landing-screenshot.png)](https://github.com/utsavgupta22/ThunderAI/blob/main/frontend/public/assets/landing-screenshot.png)
 
 ### Chatbot Page
 
-![Chatbot Page](public/assets/chatbot-screenshot.png)
+[![Chatbot Page](public/assets/chatbot-screenshot.png)](https://github.com/utsavgupta22/ThunderAI/blob/main/frontend/public/assets/chatbot-screenshot.png)
 
 # ⚡ Thunder Bolt AI
 
