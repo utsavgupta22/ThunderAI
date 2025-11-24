@@ -1,12 +1,65 @@
+### Landing Page
+
+![Landing Page](public/assets/landing-screenshot.png)
+
+### Chatbot Page
+
+![Chatbot Page](public/assets/chatbot-screenshot.png)
+
 # ⚡ Thunder Bolt AI
 
 **Your Multi-Model AI-Powered Code Assistant**
 
 An interactive chat-based code assistant with support for multiple AI models including Gemini, ChatGPT, Claude, and Perplexity. Upload your code, ask questions, and get instant AI-powered insights with beautiful syntax highlighting and real-time processing feedback!
 
-## ✨ Features
+![Thunder Bolt AI](https://img.shields.io/badge/Status-Active-brightgreen) ![License](https://img.shields.io/badge/License-MIT-blue) ![Node.js](https://img.shields.io/badge/Node.js-16+-green) ![MongoDB](https://img.shields.io/badge/MongoDB-5.0+-green) ![React](https://img.shields.io/badge/React-18.2-blue) ![Vite](https://img.shields.io/badge/Vite-5.0-purple)
 
-### Core Functionality
+---
+
+## 📸 Screenshots & Demo
+
+### 🎨 Landing Page - Multi-AI Selection
+## Screenshots
+
+### Landing Page
+
+![Landing Page](public/assets/landing-screenshot.png)
+
+Beautiful landing page with typing animation, floating elements, and smooth transitions
+- Responsive design for all devices
+- Real-time typing animation with typewriter effect
+- Animated floating background elements
+- AI model showcase cards
+- One-click theme switching (Light/Dark/Neon)
+
+### 💬 Chat Interface - Code Analysis
+Full-featured chat interface for code analysis and Q&A
+- Real-time AI responses with streaming
+- Multiple file upload with drag-and-drop
+- Chat history sidebar with manage options
+- Live processing indicators
+- Syntax highlighting for 100+ languages
+- Copy-to-clipboard for code blocks
+
+### 🔐 Authentication - Secure Login
+Professional login and signup screens
+- User registration with validation
+- Secure JWT authentication
+- Email verification ready
+- API key management in settings
+
+---
+
+### AI Models Supported
+
+| Model | Provider | Speed | Cost | Best For |
+|-------|----------|-------|------|----------|
+| **Gemini 1.5 Flash** | Google | ⚡ Fast | 🆓 Free | Quick responses, code generation |
+| **Gemini 1.5 Pro** | Google | 🚀 Very Fast | 💰 Paid | Complex analysis, detailed explanations |
+| **GPT-4** | OpenAI | ⚙️ Medium | 💰 Paid | Advanced reasoning, best quality |
+| **GPT-3.5 Turbo** | OpenAI | ⚡ Fast | 💰 Paid | Balanced speed and quality |
+| **Claude 3 Haiku** | Anthropic | ⚡ Fast | 💰 Paid | Code analysis, safe responses |
+| **Llama 3.1 Sonar** | Perplexity | 🚀 Very Fast | 💰 Paid | Latest web knowledge, real-time info |
 - **💬 Multi-AI Chat Interface** - Switch between Gemini, ChatGPT, Claude, and Perplexity
 - **📁 File Upload System** - Upload and analyze multiple code files/folders
 - **⚡ Real-time Responses** - Live streaming responses with visual feedback
