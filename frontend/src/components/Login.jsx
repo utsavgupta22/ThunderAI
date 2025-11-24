@@ -166,9 +166,9 @@ function Login({ onLogin, onSwitchToSignup }) {
 
           {/* Creator Signature */}
           <div className="text-center pt-2">
-            <p className="text-xs text-gray-500">
+            {/* <p className="text-xs text-gray-500">
               Created by <span className="text-purple-600 font-semibold"></span>
-            </p>
+            </p> */}
           </div>
         </form>
       </div>
