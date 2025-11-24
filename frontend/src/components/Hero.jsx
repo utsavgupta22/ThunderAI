@@ -237,11 +237,11 @@ function Hero({ onGetStarted, user, authToken, onLogout }) {
           <div className="flex flex-col md:flex-row justify-between items-center gap-3">
             <div className="flex items-center gap-2">
               <span className="text-xl">🧠</span>
-              <span className="font-semibold text-gray-900 dark:text-white neon-theme:text-[#39ff14]">Luv AI</span>
+              <span className="font-semibold text-gray-900 dark:text-white neon-theme:text-[#39ff14]">Thunder AI</span>
             </div>
             <div className="text-center text-sm text-gray-600 dark:text-gray-300 neon-theme:text-[#baffc9]">
               <p>Powered by Multiple Agents</p>
-              <p>Created by <span className="text-purple-600 dark:text-purple-400 neon-theme:text-[#39ff14] font-semibold">Luv Gupta</span></p>
+              <p>Created by <span className="text-purple-600 dark:text-purple-400 neon-theme:text-[#39ff14] font-semibold"></span></p>
             </div>
           </div>
         </div>

@@ -91,7 +91,7 @@ Professional login and signup screens
 
 1. **Clone the Repository**
 ```bash
-git clone https://github.com/luvgupta014/chat-bot.git
+git clone https://github.com/utsavgupta22/ThunderAI.git
 cd chat-bot
 ```
 
@@ -378,8 +378,7 @@ Contributions are welcome! Please follow these steps:
 
 ## 👨‍💻 Creator
 
-**Created with ❤️ by Luv Gupta**
-- GitHub: [@luvgupta014](https://github.com/luvgupta014)
+**Created with ❤️**
 
 ## 🙏 Acknowledgments
 
