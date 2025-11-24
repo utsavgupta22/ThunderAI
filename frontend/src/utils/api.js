@@ -5,11 +5,14 @@
 
 const getApiUrl = () => {
   // In production (Vercel), use VITE_API_URL from .env
-  if (import.meta.env.VITE_API_URL) {
-    return import.meta.env.VITE_API_URL;
+  const url = import.meta.env.VITE_API_URL;
+  console.log('🔗 API URL from env:', url);
+  if (url) {
+    return url;
   }
   // In development with Vite proxy, use relative /api paths
   // In production without VITE_API_URL set, this will fallback to /api
+  console.log('🔗 API URL fallback to /api');
   return '/api';
 };
 
